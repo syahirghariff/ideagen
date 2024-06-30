@@ -38,7 +38,7 @@ public class ExpressionUtil {
             case "-" -> a.subtract(b);
             case "*" -> a.multiply(b);
             case "/" -> Optional.of(b)
-                    .filter(val -> !BigDecimal.ZERO.equals(val))
+                    .filter(val -> val.compareTo(BigDecimal.ZERO) > 0)
                     .map(a::divide)
                     .orElseThrow(()-> new ArithmeticException("Cannot divide by zero"));
             default -> throw new ArithmeticException("Invalid operations");
